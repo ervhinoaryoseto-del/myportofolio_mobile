@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
   
-  final String npm = "2406000001";
-  final String nama = "Burhan";
-  final String kelas = "PBP A";
+  final String npm = "2506551125";
+  final String nama = "Ervhino Aryo Seto";
+  final String kelas = "PBP F";
 
 
   final List<ItemHomepage> items = [
