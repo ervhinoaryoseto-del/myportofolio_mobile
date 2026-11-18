@@ -28,14 +28,24 @@ Aplikasi mobile portofolio pribadi berbasis Flutter untuk mata kuliah Pemrograma
 - **Menu portofolio**: menyediakan tombol Lihat Proyek, Tambah Proyek, Logout, Search, Menu, dan History.
 - **Interaksi tombol**: setiap tombol memiliki ikon, warna latar yang berbeda, dan menampilkan SnackBar sesuai nama tombol yang ditekan.
 - **Tampilan responsif**: kartu aksi ditampilkan dalam grid menggunakan widget Flutter.
-- **Struktur modular**: widget halaman utama dan komponen pendukung dipisahkan ke `lib/menu.dart`, sedangkan bootstrap aplikasi berada di `lib/main.dart`.
+- **Drawer navigation**: menyediakan navigasi ke halaman Home dan Add Project melalui drawer.
+- **Form tambah proyek**: menerima nama, deskripsi, kategori, teknologi, dan tautan proyek dengan validasi untuk nama serta deskripsi.
+- **Popup hasil input**: menampilkan data proyek setelah form berhasil divalidasi dan mereset form setelah konfirmasi.
+- **Navigasi kartu**: kartu Tambah Proyek membuka halaman form menggunakan `Navigator.push`.
+- **Struktur modular**: halaman berada di `lib/screens/`, widget bersama berada di `lib/widgets/`, dan bootstrap aplikasi berada di `lib/main.dart`.
+- **Material UI**: menggunakan dependency `material_ui` sesuai instruksi Tutorial 09 untuk Flutter 3.47.
 
 ## Struktur Proyek
 
 ```text
 lib/
-├── main.dart     # Bootstrap aplikasi dan MaterialApp
-└── menu.dart     # MyHomePage, InfoCard, ItemCard, dan model ItemHomepage
+├── main.dart                       # Bootstrap aplikasi dan MaterialApp
+├── screens/
+│   ├── menu.dart                   # Halaman Home, InfoCard, dan ItemHomepage
+│   └── project_form.dart           # Form tambah proyek dan validasi
+└── widgets/
+    ├── left_drawer.dart            # Drawer navigation
+    └── project_card.dart           # Kartu menu dan navigasi form
 ```
 
 ## Menjalankan Proyek
@@ -47,6 +57,11 @@ git clone https://github.com/ervhinoaryoseto-del/myportofolio_mobile.git
 cd myportofolio_mobile
 flutter pub get
 flutter run
+```
+Proyek ini menggunakan `material_ui` sesuai ketentuan Tutorial 09. Jika dependency belum tersedia, jalankan:
+
+```bash
+flutter pub add material_ui
 ```
 
 Untuk memeriksa kualitas kode dan menjalankan pengujian:
@@ -62,6 +77,7 @@ flutter test
 |---|---|
 | **Tutorial 08** | Membuat proyek Flutter, memahami struktur aplikasi, memisahkan `menu.dart` dari `main.dart`, serta membuat widget `InfoCard` dan `ItemCard`. |
 | **Tugas 7** | Menyesuaikan aplikasi menjadi portofolio pribadi, mengisi identitas pemilik, menambahkan menu aksi, memberi warna berbeda pada setiap tombol, dan menampilkan SnackBar interaktif. |
+| **Tutorial 09** | Menambahkan drawer navigation, halaman form tambah proyek, validasi input, popup data proyek, navigasi tombol, dan refactoring halaman serta widget ke direktori `screens` dan `widgets`. |
 
 ---
 
