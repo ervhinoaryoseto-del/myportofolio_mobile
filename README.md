@@ -33,6 +33,7 @@ Aplikasi mobile portofolio pribadi berbasis Flutter untuk mata kuliah Pemrograma
 - **Popup hasil input**: menampilkan data proyek setelah form berhasil divalidasi dan mereset form setelah konfirmasi.
 - **Navigasi kartu**: kartu Tambah Proyek membuka halaman form menggunakan `Navigator.push`.
 - **Struktur modular**: halaman berada di `lib/screens/`, widget bersama berada di `lib/widgets/`, dan bootstrap aplikasi berada di `lib/main.dart`.
+- **Form pendidikan**: menerima input berupa institusi, program studi, jenjang, periode pendidikan, dan deskripsi dengan validasi serta dialog ringkasan.
 - **Material UI**: menggunakan dependency `material_ui` sesuai instruksi Tutorial 09 untuk Flutter 3.47.
 
 ## Struktur Proyek
@@ -78,6 +79,7 @@ flutter test
 | **Tutorial 08** | Membuat proyek Flutter, memahami struktur aplikasi, memisahkan `menu.dart` dari `main.dart`, serta membuat widget `InfoCard` dan `ItemCard`. |
 | **Tugas 7** | Menyesuaikan aplikasi menjadi portofolio pribadi, mengisi identitas pemilik, menambahkan menu aksi, memberi warna berbeda pada setiap tombol, dan menampilkan SnackBar interaktif. |
 | **Tutorial 09** | Menambahkan drawer navigation, halaman form tambah proyek, validasi input, popup data proyek, navigasi tombol, dan refactoring halaman serta widget ke direktori `screens` dan `widgets`. |
+| **Tugas 8** | Menambahkan form pendidikan dengan input institusi, program studi, jenjang, date picker, status pendidikan, validasi, dialog ringkasan, serta navigasi dari kartu dan drawer. |
 
 ---
 
@@ -135,6 +137,25 @@ flutter test
 
    Full restart diperlukan jika perubahan berkaitan dengan native code Android atau iOS, konfigurasi platform, penambahan plugin native, perubahan dependency tertentu, atau perubahan yang membutuhkan proses build ulang secara menyeluruh.
 
+
+### Tugas 8
+
+1. Jelaskan perbedaan antara Navigator.push(), Navigator.pushReplacement(), dan Navigator.pop(). Metode apa yang digunakan untuk membuka formulir dari kartu aksi? Jelaskan juga bagaimana opsi Home di drawer membawa pengguna kembali ke halaman utama?
+
+`Navigator.push()` menambahkan halaman baru ke stack sehingga form dapat dibuka dari kartu atau drawer dan pengguna dapat kembali dengan tombol Back. `Navigator.pushReplacement()` mengganti halaman aktif, sehingga digunakan oleh opsi Home pada drawer agar pengguna kembali ke halaman utama tanpa menumpuk route baru. `Navigator.pop()` menutup route teratas, sehingga digunakan untuk menutup dialog dan kembali dari halaman.
+
+2. Bagaimana susunan Scaffold, AppBar, dan Drawer membantu menjaga struktur halaman tetap konsisten? Berikan satu contoh penggunaan warna tema portofolio di lebih dari satu halaman?
+
+`Scaffold` menyediakan struktur halaman, `AppBar` menjaga judul dan tema visual tetap konsisten, sedangkan `Drawer` menyediakan navigasi global yang dapat dipakai dari halaman utama maupun halaman form.
+
+3. Mengapa tata letak tersebut dipilih untuk formulir? Jelaskan peran widget pengatur jarak dan widget penggulir ketika ruang layar terbatas?
+
+Form pendidikan memakai `TextFormField` untuk teks, `DropdownButtonFormField` untuk jenjang dengan pilihan terbatas, dan `showDatePicker()` untuk tanggal agar input lebih terstruktur dan mengurangi kesalahan format. `SingleChildScrollView` digunakan agar seluruh form tetap dapat diakses pada layar sempit atau saat keyboard terbuka.
+
+4. Apa peran GlobalKey<FormState>, validator, dan validate() saat tombol Simpan ditekan? Berikan satu contoh nilai yang ditolak oleh validasi dan jelaskan mengapa memilih jenis input atau papan ketik saja belum cukup?
+
+`GlobalKey<FormState>` memberi akses ke state form. Setiap validator memeriksa input masing-masing, lalu `validate()` menjalankan seluruh validator saat tombol Simpan ditekan. Contoh input yang ditolak adalah nama institusi kosong, deskripsi kurang dari 10 karakter, atau tanggal selesai yang lebih awal dari tanggal mulai.
+
 ---
 
 ## AI Disclosure
@@ -150,4 +171,16 @@ Saya menggunakan Generative-AI yaitu ChatGPT Web sebagai alat bantu untuk meninj
 
 **Keterbatasan AI dan perbaikan manual:**
 - AI tidak dapat menulis data pribadi saya tanpa context yang lengkap, sehingga saya menambahkan identitas pribadi (nama, NPM, kelas) secara manual.
+
+## Tugas 8
+Log chat: https://chatgpt.com/share/6b045cfb-0880-83ec-b3ed-ac7313f9ce52
+
+**Strategi prompting:** 
+Saya menggunakan Generative-AI yaitu ChatGPT Web sebagai alat bantu untuk menyusun rencana implementasi dan meninjau kesesuaian aplikasi Flutter dengan instruksi Tugas 8. Implementasi akhir, penyesuaian fitur pendidikan, pengujian aplikasi, dan keputusan desain tetap saya periksa sendiri.
+
+**Bagian yang dibantu AI:**
+- Penyusunan rencana implementasi Tugas 8
+
+**Keterbatasan AI dan perbaikan manual:**
+- Saya memeriksa kembali hasil implementasi dan memperbaiki masalah runtime terkait penggunaan library Material dan localization
 
