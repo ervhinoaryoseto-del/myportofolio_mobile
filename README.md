@@ -80,6 +80,7 @@ flutter test
 | **Tugas 7** | Menyesuaikan aplikasi menjadi portofolio pribadi, mengisi identitas pemilik, menambahkan menu aksi, memberi warna berbeda pada setiap tombol, dan menampilkan SnackBar interaktif. |
 | **Tutorial 09** | Menambahkan drawer navigation, halaman form tambah proyek, validasi input, popup data proyek, navigasi tombol, dan refactoring halaman serta widget ke direktori `screens` dan `widgets`. |
 | **Tugas 8** | Menambahkan form pendidikan dengan input institusi, program studi, jenjang, date picker, status pendidikan, validasi, dialog ringkasan, serta navigasi dari kartu dan drawer. |
+| **Tutorial 10** | Menghubungkan aplikasi dengan API, menampilkan daftar proyek dari server, menambahkan login dan logout berbasis token, melindungi fitur tambah proyek, serta menambahkan workflow CI untuk analisis, testing, dan build APK. |
 
 ---
 
