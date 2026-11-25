@@ -19,7 +19,13 @@ class _EducationFormPageState extends State<EducationFormPage> {
   DateTime? _endDate;
   bool _isOngoing = false;
 
-  final List<String> _levels = ['SMA/SMK', 'Diploma', 'Sarjana', 'Magister', 'Doktor'];
+  final List<String> _levels = [
+    'SMA/SMK',
+    'Diploma',
+    'Sarjana',
+    'Magister',
+    'Doktor',
+  ];
 
   @override
   void dispose() {
@@ -47,13 +53,19 @@ class _EducationFormPageState extends State<EducationFormPage> {
             children: [
               TextFormField(
                 controller: _institutionController,
-                decoration: _decoration('Nama Institusi', 'Contoh: Universitas Indonesia'),
+                decoration: _decoration(
+                  'Nama Institusi',
+                  'Contoh: Universitas Indonesia',
+                ),
                 validator: (value) => _required(value, 'Nama institusi'),
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _studyProgramController,
-                decoration: _decoration('Program Studi', 'Contoh: Ilmu Komputer'),
+                decoration: _decoration(
+                  'Program Studi',
+                  'Contoh: Ilmu Komputer',
+                ),
                 validator: (value) => _required(value, 'Program studi'),
               ),
               const SizedBox(height: 16),
@@ -61,7 +73,10 @@ class _EducationFormPageState extends State<EducationFormPage> {
                 initialValue: _level,
                 decoration: _decoration('Jenjang Pendidikan', null),
                 items: _levels
-                    .map((level) => DropdownMenuItem(value: level, child: Text(level)))
+                    .map(
+                      (level) =>
+                          DropdownMenuItem(value: level, child: Text(level)),
+                    )
                     .toList(),
                 onChanged: (value) => setState(() => _level = value!),
               ),
@@ -70,7 +85,8 @@ class _EducationFormPageState extends State<EducationFormPage> {
                 label: 'Tanggal Mulai',
                 value: _startDate,
                 onTap: () => _pickDate(isStart: true),
-                validator: (_) => _startDate == null ? 'Tanggal mulai wajib dipilih' : null,
+                validator: (_) =>
+                    _startDate == null ? 'Tanggal mulai wajib dipilih' : null,
               ),
               const SizedBox(height: 8),
               CheckboxListTile(
@@ -100,11 +116,16 @@ class _EducationFormPageState extends State<EducationFormPage> {
               TextFormField(
                 controller: _descriptionController,
                 maxLines: 4,
-                decoration: _decoration('Deskripsi', 'Ceritakan pendidikan ini'),
+                decoration: _decoration(
+                  'Deskripsi',
+                  'Ceritakan pendidikan ini',
+                ),
                 validator: (value) {
                   final requiredError = _required(value, 'Deskripsi');
                   if (requiredError != null) return requiredError;
-                  if (value!.trim().length < 10) return 'Deskripsi minimal 10 karakter';
+                  if (value!.trim().length < 10) {
+                    return 'Deskripsi minimal 10 karakter';
+                  }
                   return null;
                 },
               ),
@@ -136,7 +157,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
   Future<void> _pickDate({required bool isStart}) async {
     final selected = await showDatePicker(
       context: context,
-      initialDate: isStart ? (_startDate ?? DateTime.now()) : (_endDate ?? _startDate ?? DateTime.now()),
+      initialDate: isStart
+          ? (_startDate ?? DateTime.now())
+          : (_endDate ?? _startDate ?? DateTime.now()),
       firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
@@ -164,7 +187,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
               Text('Institusi: ${_institutionController.text.trim()}'),
               Text('Program Studi: ${_studyProgramController.text.trim()}'),
               Text('Jenjang: $_level'),
-              Text('Periode: ${_formatDate(_startDate!)} - ${_isOngoing ? 'Sekarang' : _formatDate(_endDate!)}'),
+              Text(
+                'Periode: ${_formatDate(_startDate!)} - ${_isOngoing ? 'Sekarang' : _formatDate(_endDate!)}',
+              ),
               Text('Deskripsi: ${_descriptionController.text.trim()}'),
             ],
           ),
@@ -190,7 +215,8 @@ class _EducationFormPageState extends State<EducationFormPage> {
     );
   }
 
-  String _formatDate(DateTime date) => '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+  String _formatDate(DateTime date) =>
+      '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
 }
 
 class _DateField extends StatelessWidget {
@@ -200,7 +226,13 @@ class _DateField extends StatelessWidget {
   final VoidCallback onTap;
   final String? Function(DateTime?)? validator;
 
-  const _DateField({required this.label, required this.value, required this.onTap, required this.validator, this.enabled = true});
+  const _DateField({
+    required this.label,
+    required this.value,
+    required this.onTap,
+    required this.validator,
+    this.enabled = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +247,11 @@ class _DateField extends StatelessWidget {
             errorText: field.errorText,
             enabled: enabled,
           ),
-          child: Text(value == null ? 'Pilih tanggal' : '${value!.day.toString().padLeft(2, '0')}/${value!.month.toString().padLeft(2, '0')}/${value!.year}'),
+          child: Text(
+            value == null
+                ? 'Pilih tanggal'
+                : '${value!.day.toString().padLeft(2, '0')}/${value!.month.toString().padLeft(2, '0')}/${value!.year}',
+          ),
         ),
       ),
     );
